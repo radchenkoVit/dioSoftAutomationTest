@@ -79,8 +79,8 @@ public abstract class BasePage {
         int count = 0;
         final JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        while (!js.executeScript("return document.readyState").equals("complete") || count < 40){
-            //ReportWriter.info("Waiting for a page by document.readyState is done");
+        while (!js.executeScript("return document.readyState").equals("complete") && count < 20){
+            //ReportWriter.info("Waiting for a page by document.readyState is done";
             sleep(250);
             count++;
         }
