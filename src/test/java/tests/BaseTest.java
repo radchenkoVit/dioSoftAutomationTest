@@ -1,7 +1,6 @@
 package tests;
 
 import data.Waiting;
-import org.apache.commons.logging.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
