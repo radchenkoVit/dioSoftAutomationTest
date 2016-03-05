@@ -1,11 +1,13 @@
 package tests;
 
 import data.Waiting;
+import org.apache.commons.logging.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import utils.Logger;
 
 
 import java.lang.reflect.Method;
@@ -24,10 +26,11 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(Method method, ITestResult testResult){
+        String testName = method.getName();
         if (testResult.getStatus() == ITestResult.FAILURE) {
-           //Report
+            Logger.fail(testName);
         } else {
-            //Report
+            Logger.pass(testName);
         }
 
         driver.close();
