@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Currency {
-    USD("USD", "$"), EURO("EUR", "€"), UAH("UAH", "₴"), ZL("PLN", "zł");
+    USD("USD", "$"), EURO("EUR", "€"), ZL("PLN", "zł");
+    //to add another currencies
 
     private String code;
     private String symbol;
@@ -59,6 +60,11 @@ public enum Currency {
     }
 
     public static double getCurrencyRate(final Currency base, final Currency quoted){
+
+        if (base == quoted){
+            return 1d;
+        }
+
         String currencyRateUrl = String.format(currencyRateEndPoint, base.getCode(), quoted.getCode());
         HttpResponse<JsonNode> jsonNode = null;
         try {
