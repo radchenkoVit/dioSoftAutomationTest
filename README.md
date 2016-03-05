@@ -1,5 +1,3 @@
-# dioSoftAutomationTest
-
 # Before running tests you need to istall:
 1. Java
 2. Maven
