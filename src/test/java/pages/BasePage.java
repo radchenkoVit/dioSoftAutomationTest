@@ -7,14 +7,17 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
+import utils.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 public abstract class BasePage {
     protected WebDriver driver;
+    protected JavascriptExecutor js;
 
     BasePage(WebDriver driver){
         this.driver = driver;
+        js = (JavascriptExecutor) driver;
     }
 
     protected WebElement find(final By locator){
@@ -55,6 +58,7 @@ public abstract class BasePage {
         WebElement el = find(locator);
         el.clear();
         el.sendKeys(text);
+        Logger.info(text + " was entered to element, by: " + locator);
     }
 
     protected void click(final By locator){
@@ -62,36 +66,17 @@ public abstract class BasePage {
 
         try {
             element.click();
-        } catch (Exception ex){
-            //click by JS
+        } catch (WebDriverException exception){
+            if (exception.getMessage().contains("Element is not clickable at point")) {
+                js.executeScript("arguments[0].click();", element);
+            }
         }
-    }
 
-    protected boolean isElementVisible(final By locator){
-        return find(locator).isDisplayed();
+        Logger.info("Click on element, by: " + locator);
     }
 
     protected void setImplicityTimeOut(int timeOut){
         driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
-    }
-
-    protected void waitForPageToBeLoadedByJs(){
-        int count = 0;
-        final JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        while (!js.executeScript("return document.readyState").equals("complete") && count < 20){
-            //ReportWriter.info("Waiting for a page by document.readyState is done";
-            sleep(250);
-            count++;
-        }
-    }
-
-    protected void sleep(long time){
-        try {
-            Thread.currentThread().sleep(time);
-        } catch (InterruptedException e) {
-            // ReportWriter.warn("Exception during call sleep, ex: e.getMessage()")
-        }
     }
 
     protected abstract void waitPageToLoad();
