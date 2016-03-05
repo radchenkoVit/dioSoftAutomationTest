@@ -1,0 +1,7 @@
+dioSoftAutomationTest/.idea/*
+dioSoftAuromationTest/target/*
+target/
+*.class
+*.log
+*.iml
+*.idea
