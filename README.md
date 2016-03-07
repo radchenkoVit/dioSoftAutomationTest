@@ -1,4 +1,4 @@
-# Before running tests you need to istall:
+# Before running tests you need to install:
 1. Java
 2. Maven
 3. FireFox
