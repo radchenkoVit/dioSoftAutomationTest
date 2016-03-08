@@ -4,11 +4,13 @@ import data.Configuration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CurrencyConverterPage;
+import utils.Logger;
 
-public class CheckCurrencyChange extends BaseTest {
+public class CheckCurrencyChangeTest extends BaseTest {
 
     @Test
-    public void chechCurrencyChange(){
+    public void chechCurrencyChangeTest(){
+        Logger.start("Check currency change");
         CurrencyConverterPage converterPage = new CurrencyConverterPage(driver);
 
         converterPage
@@ -23,6 +25,6 @@ public class CheckCurrencyChange extends BaseTest {
         Double saturdayCurrencyRate = converterPage.getCurrencyRate();
 
 
-        Assert.assertEquals(sundayCurrencyRate, saturdayCurrencyRate, "Currency Rate was Changed during weekends");
+        Assert.assertEquals(sundayCurrencyRate, saturdayCurrencyRate, "Currency Rate was changed during weekends");
     }
 }

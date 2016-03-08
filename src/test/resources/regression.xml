@@ -8,7 +8,7 @@
     <test name="Functional Tests" >
         <classes>
             <class name="tests.CheckConverterTest"/>
-            <class name="tests.CheckCurrencyChange"/>
+            <class name="tests.CheckCurrencyChangeTest"/>
         </classes>
     </test>
 </suite>
