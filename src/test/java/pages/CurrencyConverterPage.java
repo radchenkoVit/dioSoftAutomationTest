@@ -25,8 +25,10 @@ public class CurrencyConverterPage extends BasePage {
     private static By closeCalendarButton = By.xpath(".//div[@class='closeCalendar']");
 
     //Calendar's locators
-    private static By saturdaysCalendarElement = By.xpath("//td[contains(@class, 'calendarWeekend') and not(contains(@class, 'Invalid'))][2]");
-    private static By sundaysCalendarElement = By.xpath("//td[contains(@class, 'calendarWeekend') and not(contains(@class, 'Invalid'))][1]");
+    private static By saturdaysCalendarElement = By.xpath(".//td[contains(@class, 'calendarWeekend') and not(contains(@class, 'Invalid'))][2]");
+    private static By sundaysCalendarElement = By.xpath(".//td[contains(@class, 'calendarWeekend') and not(contains(@class, 'Invalid'))][1]");
+
+    private static By updateCurrencyLoader = By.xpath(".//div[@id=preloader][@style='']");
 
     public CurrencyConverterPage open(final String url){
         driver.get(url);
@@ -120,6 +122,6 @@ public class CurrencyConverterPage extends BasePage {
     }
 
     private void waitUntilCurrencyRateChange(){
-        new WebDriverWait(driver, Waiting.SHORT).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//div[@id=preloader][@style='']")));
+        new WebDriverWait(driver, Waiting.SHORT).until(ExpectedConditions.invisibilityOfElementLocated(updateCurrencyLoader));
     }
 }

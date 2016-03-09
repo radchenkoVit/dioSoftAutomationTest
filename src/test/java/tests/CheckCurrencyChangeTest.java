@@ -15,13 +15,15 @@ public class CheckCurrencyChangeTest extends BaseTest {
 
         converterPage
                 .open(Configuration.CONVERTER_PAGE_URL)
-                .openCalendar();
+                .openCalendar()
+                .selectPrevSaturday();
 
-        converterPage.selectPrevSunday();
         Double sundayCurrencyRate = converterPage.getCurrencyRate();
 
-        converterPage.openCalendar();
-        converterPage.selectPrevSaturday();
+        converterPage
+                .openCalendar()
+                .selectPrevSunday();
+
         Double saturdayCurrencyRate = converterPage.getCurrencyRate();
 
 
